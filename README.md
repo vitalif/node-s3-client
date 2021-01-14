@@ -2,7 +2,7 @@
 
 ## Installation
 
-`npm install s3 --save`
+`npm install s3-node --save`
 
 ## Features
 
@@ -20,14 +20,14 @@
  * Support third-party S3-compatible platform services like Ceph
 
 See also the companion CLI tool which is meant to be a drop-in replacement for
-s3cmd: [s3-cli](https://github.com/andrewrk/node-s3-cli).
+s3cmd: [s3-cli](https://github.com/ncnipunchawla/node-s3-client.git).
 
 ## Synopsis
 
 ### Create a client
 
 ```js
-var s3 = require('s3');
+var s3 = require('s3-node');
 
 var client = s3.createClient({
   maxAsyncS3: 20,     // this is the default
@@ -50,7 +50,7 @@ var client = s3.createClient({
 ### Create a client from existing AWS.S3 object
 
 ```js
-var s3 = require('s3');
+var s3 = require('s3-node');
 var awsS3Client = new AWS.S3(s3Options);
 var options = {
   s3Client: awsS3Client,
@@ -252,7 +252,7 @@ And these events:
    `progressTotal` properties change. Note that it is possible for progress to
    go backwards when an upload fails and must be retried.
  * `'fileOpened' (fdSlicer)` - emitted when `localFile` has been opened. The file
-   is opened with the [fd-slicer](https://github.com/andrewrk/node-fd-slicer)
+   is opened with the [fd-slicer](https://github.com/ncnipunchawla/node-s3-client.git)
    module because we might need to read from multiple locations in the file at
    the same time. `fdSlicer` is an object for which you can call
    `createReadStream(options)`. See the fd-slicer README for more information.
@@ -616,7 +616,7 @@ Using the AWS SDK, you can send a HEAD request, which will tell you if a file ex
 See http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#headObject-property
 
 ```js
-var client = require('s3').createClient({ /* options */ });
+var client = require('s3-node').createClient({ /* options */ });
 client.s3.headObject({
   Bucket: 's3 bucket name',
   Key: 'some/remote/file'
